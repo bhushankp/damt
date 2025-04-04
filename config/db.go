@@ -1,6 +1,7 @@
 package config
 
 import (
+	"damt/models"
 	"fmt"
 	"os"
 
@@ -22,4 +23,8 @@ func ConnectDB() {
 	if err != nil {
 		panic("Failed to connect to database: " + err.Error())
 	}
+}
+
+func MigrateDB(db *gorm.DB) {
+	db.AutoMigrate(&models.User{})
 }
